@@ -1,4 +1,5 @@
 import { ClerkProvider } from "@clerk/nextjs";
+import type { Metadata } from "next";
 
 import { cn } from "@/lib/utils";
 import { Inter as FontSans } from "next/font/google";
@@ -17,7 +18,9 @@ export const metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{ children: React.ReactNode }>) {
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <ClerkProvider>
       <html lang="en">
@@ -27,7 +30,7 @@ export default function RootLayout({
             fontSans.variable
           )}
         >
-          <div>layout</div>
+          {children}
         </body>
       </html>
     </ClerkProvider>
