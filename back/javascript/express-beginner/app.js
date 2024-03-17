@@ -1,33 +1,14 @@
-const http = require('http');
-const { readFileSync } = require('fs');
+const express = require('express');
+const app = express();
 
-// get all files
-const homePage = readFileSync('./views/home.html');
-
-const server = http.createServer((req, res) => {
-
-  if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/html' })
-    res.write(homePage);
-    res.end();
-    return;
-  } else if (req.url === '/about') {
-    res.writeHead(200, { 'Content-Type': 'text/html' })
-    res.write('<h1>About Page</h1>');
-    res.end();
-    return;
-  } else if (req.url === '/contact') {
-    res.writeHead(200, { 'Content-Type': 'text/html' })
-    res.write('<h1>Contact Page</h1>');
-    res.end();
-    return;
-  } else {
-    res.writeHead(404, { 'Content-Type': 'text/html' })
-    res.write('<h1>Page Not Found</h1>');
-    res.end();
-    return;
-  }
-
+app.get('/', (req, res) => {
+  res.status(200).send('Hello World');
 })
 
-server.listen(6014)
+app.all('*', (req, res) => {
+  res.status(404).send('Not Found');
+})
+
+app.listen(6019, () => {
+  console.log('Server is running on port 6019...');
+})
