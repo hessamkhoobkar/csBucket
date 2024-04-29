@@ -1,8 +1,9 @@
 import express, { Express } from "express";
 import dotenv from "dotenv";
 import { router as tasks } from "./routers/tasks";
+import connectDB from "./db/connection";
 
-const connectDB = require("./db/connection");
+// const connectDB = require("./db/connection");
 
 dotenv.config();
 

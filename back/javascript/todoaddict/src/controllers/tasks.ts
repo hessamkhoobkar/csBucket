@@ -1,11 +1,13 @@
 import { Request, Response } from "express";
 
+const Task = require("../models/Task");
+
 export const getAllTasks = (req: Request, res: Response) => {
   res.send("All tasks");
 };
 
-export const createTask = (req: Request, res: Response) => {
-  res.send("Create task");
+export const createTask = async (req: Request, res: Response) => {
+  const task = await Task.create(req.body);
 };
 
 export const getTask = (req: Request, res: Response) => {
